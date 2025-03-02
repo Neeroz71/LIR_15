@@ -46,7 +46,7 @@
     AT+INIT           // Инициализация профиля SPP  
 HC-05 готов к работе  
 
-# Запуск проограммы для ЛИР-15
+# Запуск проограммы 
 + Подключите все по схеме из файла [Scheme.png](https://github.com/Neeroz71/LIR_15/blob/c10613997a630aaeedf29c867f19b2f7fb4dfdcd/Scheme.png) в этом файле представлена схема в среде Fritzing, к сожелению в ней нету разьёма PC10TB который имеет наш датчик поэтому я схемотично нарисовал разьём с 10 пинами как у PC10TB из этого файла [PC10TB.png](https://github.com/Neeroz71/LIR_15/blob/f1e7c0295d92306907926a0c61a72b1689f5900c/PC10TB.png) используйте распайку разьема под буквой A соответсенно
 + Запустите файл [LIR-15_TTL.ino](https://github.com/Neeroz71/LIR_15/blob/71f800423732c0921bcdbf73c49f1f4220726394/LIR-15_TTL.ino) в в среде Arduino IDE и загрузите его в Arduino с отключенным HC-05, после загрузки подключите HC-05 обратно
 + Запустите файл [LIR-15_GUI.py](https://github.com/Neeroz71/LIR_15/blob/71f800423732c0921bcdbf73c49f1f4220726394/LIR-15_GUI.py) в среде Visual Studio Code
