@@ -41,9 +41,8 @@ ISR(INT0_vect) { handleEncoder(); } // Прерывание на пине D2
 ISR(INT1_vect) { handleEncoder(); } // Прерывание на пине D3
 
 void handleEncoder() {
-    static uint8_t prevState = 0; // Хранит предыдущее состояние
+    static uint8_t prevState = 0; 
     
-    // Чтение текущих состояний
     bool stateA = digitalRead(pinA);
     bool stateAinv = digitalRead(pinA_inv);
     bool stateB = digitalRead(pinB);
@@ -51,10 +50,10 @@ void handleEncoder() {
     
     // Проверка ошибок сигналов
     if(stateA == stateAinv || stateB == stateBinv) {
-        errorFlag = true; // Активируем флаг ошибки
-        return; // Прекращаем обработку
+        errorFlag = true; 
+        return;
     } else {
-        errorFlag = false; // Сбрасываем флаг ошибки
+        errorFlag = false; 
     }
     
     // Формирование текущего состояния (2 бита: A и B)
@@ -62,8 +61,7 @@ void handleEncoder() {
     
     // Расчёт изменения позиции через таблицу переходов
     int8_t delta = encoderTable[(prevState << 2) | currState];
-    position += delta; // Обновление позиции
-    
+    position += delta; 
     prevState = currState; // Сохраняем текущее состояние
     dataReady = true; // Устанавливаем флаг готовности данных
 }
@@ -71,15 +69,15 @@ void handleEncoder() {
 void loop() {
     // Отправка данных
     if(dataReady && (micros() - lastSendTime) >= sendInterval*1000) {
-        noInterrupts(); // Запрет прерываний
-        int32_t currentPos = position; // Безопасное копирование
-        dataReady = false; // Сброс флага
-        interrupts(); // Разрешение прерываний
+        noInterrupts(); 
+        int32_t currentPos = position; 
+        dataReady = false; 
+        interrupts(); 
         
         // Отправка 4-байтового значения 
         Serial.write((uint8_t*)&currentPos, sizeof(currentPos));
         
-        lastSendTime = micros(); // Обновление времени отправки
+        lastSendTime = micros(); 
     }
     
     // Управление светодиодом ошибки
