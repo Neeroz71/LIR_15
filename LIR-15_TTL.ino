@@ -76,7 +76,7 @@ void loop() {
         dataReady = false; // Сброс флага
         interrupts(); // Разрешение прерываний
         
-        // Отправка 4-байтового значения (little-endian)
+        // Отправка 4-байтового значения 
         Serial.write((uint8_t*)&currentPos, sizeof(currentPos));
         
         lastSendTime = micros(); // Обновление времени отправки
